@@ -348,6 +348,21 @@ function selectSchedule(element) {
     };
     xhr.send(data)
 }
+function listRendererActivities(list) {
+    let ul = document.createElement('ul');
+    ul.setAttribute('id', 'actList');
+    document.getElementById('renderList').appendChild(ul);
+    list.forEach(renderScheduleList);
+
+    function renderScheduleList(element, index, arr) {
+        let li = document.createElement('li');
+        li.setAttribute('id', 'activity-item');
+        ul.appendChild(li);
+
+        li.innerHTML = li.innerHTML + element;
+    }
+}
+
 
 function listRenderer(list) {
     let ul = document.createElement('ul');
@@ -394,8 +409,15 @@ function showAdminLog() {
                 document.getElementById("admin_table").style.display = "block"
 
                 console.log(xhr.responseText)
+                let JSONOfActivities = JSON.parse(xhr.responseText);
 
-                // DOM a responsetext-el. van kulon <p> neki
+                let listOfActivities = [];
+                for (var i = 0; i < JSONOfActivities.length; i++) {
+                    let activity = "ID: " + JSONOfActivities[i].userID + ") " + JSONOfActivities[i].activity
+                    listOfActivities.push(activity)
+                    
+                }
+                listRendererActivities(listOfActivities);
             } 
         }
     };

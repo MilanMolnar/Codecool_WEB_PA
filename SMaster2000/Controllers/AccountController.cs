@@ -37,9 +37,6 @@ namespace SMaster2000.Controllers
         [Route("[action]")]
         public async void Logout()
         {
-            var username = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Email).Value;
-            int id = _userService.GetUserByName(username);
-            _userService.CreateUserActivity(id, "Just logged out!");
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
 

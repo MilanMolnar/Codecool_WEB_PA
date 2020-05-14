@@ -160,7 +160,7 @@ namespace SMaster2000.Domain
             using (var conn = new NpgsqlConnection(connectingString))
             {
                 conn.Open();
-                using (var command = new NpgsqlCommand($"SELECT * FROM users", conn))
+                using (var command = new NpgsqlCommand($"SELECT * FROM userlog", conn))
                 {
                     var reader = command.ExecuteReader();
 

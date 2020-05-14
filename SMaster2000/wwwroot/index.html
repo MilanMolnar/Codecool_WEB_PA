@@ -1,0 +1,75 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body onload="deleteAllCookies()">
+
+    <div id="navbar">
+        <div id="registration-button" style="float:right">
+            <button onclick="showRegister()" style="margin-left:5px;">Register</button>
+        </div>
+        <div id="login-button" style="float:right">
+            <button onclick="showLogin()" style="margin-left:5px;">Log in</button>
+        </div>
+        <div id="logout-button" style=" float:right; display: none">
+            <button onclick="logout()" style="margin-left:5px;">Log out</button>
+        </div>
+        <div id="home-button" style=" float:left; ">
+            <button onclick="showHome()" style="margin-left:5px;">Home</button>
+        </div>
+        <div id="schedule-button" style=" float:left; ">
+            <button onclick="showAllSchedule()" style="margin-left:5px;">Schedules</button>
+        </div>
+        <div id="my-schedule-button" style=" float:left; ">
+            <button onclick="showMySchedules()" style="margin-left:5px;">My schedule(s)</button>
+        </div>
+        <div id="create-schedule-button" style=" float:left; ">
+            <button onclick="showSheduleCreate()" style="margin-left:5px;">Create schedule</button>
+        </div>
+        <div id="adminlog-button" style=" float:left; ">
+            <button onclick="showAdminLog()" style="margin-left:5px;">Admin: Show Log</button>
+        </div>
+    </div>
+
+    <div id="register_table">
+        <p id="register-title">Register</p><br>
+        <input placeholder="User name" type="text" id="user-name"> <p id="required-username">Required!</p><br>
+        <input placeholder="Password" type="text" id="user-pass"> <p id="required-password">Required!</p><br>
+        <button onclick="register()" id="register-button">Register</button>
+    </div>
+
+    <div id="login_table">
+        <p id="login-title">Login</p><br>
+        <p id="failed-login"></p>
+        <input placeholder="User name" type="text" id="user-name-login"> <p id="required-username-login">Required!</p><br>
+        <input placeholder="Password" type="text" id="user-pass-login"> <p id="required-password-login">Required!</p><br>
+        <button onclick="login()" id="login-user-button">Log in</button>
+    </div>
+
+    <div id="create_schedule_table" style="display:none">
+        <p id="create-schedule-title">Create Schedule</p><br>
+        <p id="schedule-title-label">Input the title of your schedule </p>
+        <input placeholder="Eg:'School'" type="text" id="schedule-title"> <p id="required-schedule-title">Required!</p><br>
+        <p id="schedule-days-label">Input the number of days </p>
+        <input placeholder="Eg:'6'" type="text" id="schedule-days"> <p id="required-schedule-days">Required!</p><br>
+        <button onclick="createShedule()" id="creation-schedule-button">Create</button>
+    </div>
+
+    <div id="admin_table">
+        <p id="user-activities"></p>
+    </div>
+
+    <div id="renderList"></div>
+
+    <div id="home_view">
+        <h1 id="home-title"> Welcome! </h1>
+        <p id="home-paragraph"> You have just visited ScheduleMaster2000 singlepage app.  </p>
+    </div>
+
+    <div id="profile_details">
+        <h1 id="user_details"></h1>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

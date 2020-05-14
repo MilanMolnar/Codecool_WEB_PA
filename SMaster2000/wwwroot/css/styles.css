@@ -1,0 +1,344 @@
+﻿#register_table {
+    display:none;
+    position: absolute;
+    width: 800px;
+    height: 600px;
+    margin-top: 130px;
+    margin-left: calc(50% - 400px);
+    border: solid;
+    border-width: 2px;
+}
+
+#create_schedule_table {
+    position: absolute;
+    width: 800px;
+    height: 600px;
+    margin-top: 130px;
+    margin-left: calc(50% - 400px);
+    border: solid;
+    border-width: 2px;
+}
+
+#login_table {
+    display: none;
+    position: absolute;
+    width: 800px;
+    height: 600px;
+    margin-top: 130px;
+    margin-left: calc(50% - 400px);
+    border: solid;
+    border-width: 2px;
+}
+
+#profile_details {
+    display: none;
+    position: absolute;
+    width: 800px;
+    height: 600px;
+    margin-top: 130px;
+    margin-left: calc(50% - 400px);
+    border: solid;
+    border-width: 2px;
+}
+
+#login-title {
+    text-align: center;
+    font-family: Arial;
+    font-size: 100px
+}
+
+#create-schedule-title {
+    text-align: center;
+    font-family: Arial;
+    font-size: 80px
+}
+
+#register-title {
+    text-align: center;
+    font-family: Arial;
+    font-size: 100px
+}
+
+#user-name-login {
+    float: left;
+    width: 200px;
+    height: 20px;
+    margin-left: calc(50% - 100px)
+}
+
+#user-name {
+    float: left;
+    width: 200px;
+    height: 20px;
+    margin-left: calc(50% - 100px)
+}
+
+#user-pass-login {
+    float: left;
+    margin-top: 10px;
+    height: 20px;
+    width: 200px;
+    margin-left: calc(50% - 100px)
+}
+
+#user-pass {
+    float:left;
+    margin-top: 10px;
+    height: 20px;
+    width: 200px;
+    margin-left: calc(50% - 100px)
+}
+
+
+#schedule-title-label {
+    font-family: Arial;
+    width: 300px;
+    margin-left: calc(50% - 150px)
+}
+
+#schedule-title {
+    font-family: Arial;
+    width: 300px;
+    margin-left: calc(50% - 150px)
+}
+
+#schedule-days-label {
+    font-family: Arial;
+    width: 300px;
+    margin-left: calc(50% - 150px)
+}
+
+#schedule-days {
+    font-family: Arial;
+    width: 300px;
+    margin-left: calc(50% - 150px)
+}
+
+#creation-schedule-button {
+    font-size: 18px;
+    padding-right: 3px;
+    text-align: center;
+    font-family: Arial;
+    width: 73px;
+    border: solid;
+    margin-left: calc(50% - 36px);
+    border-width: 1px;
+    border-radius: 4px;
+    border-color:darkgray;
+    margin-top:15px
+}
+
+#register-button {
+    width: 100px;
+    height: 30px;
+    margin-top: 26px;
+    margin-left: calc(50% - 50px);
+    border: solid;
+    border-width: 1px;
+    border-color: darkgray;
+    color: #383838;
+    border-radius: 4px
+}
+
+#login-user-button {
+    width: 100px;
+    height: 30px;
+    margin-top: 15px;
+    margin-left: calc(50% - 50px);
+    border: solid;
+    border-width: 1px;
+    border-color: darkgray;
+    color: #383838;
+    border-radius: 4px
+}
+
+#required-password {
+    position: absolute;
+    top: 348px;
+    margin-left: calc(50% + 110px);
+    display: none;
+    color: red
+}
+
+#required-password-login {
+    position: absolute;
+    top: 348px;
+    margin-left: calc(50% + 110px);
+    display: none;
+    color: red
+}
+
+#required-username {
+    top: 320px;
+    position: absolute;
+    margin-left: calc(50% + 110px);
+    display:none;
+    color:red
+}
+
+#required-username-login {
+    top: 320px;
+    position: absolute;
+    margin-left: calc(50% + 110px);
+    display: none;
+    color: red
+}
+
+#navbar {
+    padding: 60px;
+    text-align: center;
+    border: solid;
+    border-width:2px;
+    font-size: 20px;
+}
+
+#registration-button {
+    top: 10px;
+    font-size: 18px;
+    padding-right: 3px;
+    font-family: Arial;
+    text-align: center;
+    width: 78px;
+    border: solid;
+    margin-left: 3px;
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+#login-button {
+    font-size: 18px;
+    padding-right: 3px;
+    text-align: center;
+    font-family: Arial;
+    width: 58px;
+    border: solid;
+    margin-left:3px;
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+#logout-button {
+    font-size: 18px;
+    padding-right: 3px;
+    text-align: center;
+    font-family: Arial;
+    width: 68px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+#home-button {
+    font-size: 18px;
+    padding-right: 3px;
+    text-align: center;
+    font-family: Arial;
+    width: 68px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+
+#schedule-button {
+    font-size: 18px;
+    padding-right: 3px;
+    text-align: center;
+    font-family: Arial;
+    width: 98px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    margin-left:5px;
+}
+
+#my-schedule-button {
+    font-size: 18px;
+    padding-right: 3px;
+    text-align: center;
+    font-family: Arial;
+    width: 127px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+#create-schedule-button {
+    font-size: 18px;
+    padding-right: 3px;
+    text-align: center;
+    font-family: Arial;
+    width: 127px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+
+#adminlog-button {
+    font-size: 18px;
+    padding-right: 3px;
+    text-align: center;
+    font-family: Arial;
+    width: 150px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    margin-left: 5px;
+    display:none;
+    
+}
+
+
+#home_view {
+}
+
+#home-title {
+    text-align: center;
+    font-size: 50px;
+    padding-left: 8px;
+    font-family: Arial;
+}
+
+#home-paragraph {
+    text-align: center;
+    font-size: 30px;
+    padding-left: 8px;
+    font-family: Arial;
+}
+
+button{
+    font-size:15px;
+    height: 30px;
+    border:0;
+    background-color:white;
+}
+
+#failed-login {
+    display: none;
+    position: absolute;
+    top: 280px;
+    margin-left: calc(50% - 110px);
+    display: none;
+    color: red;
+    text-align: center;
+    width: 220px;
+}
+
+#shedule-item {
+    height: 60px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 600px;
+    margin-left: calc(50% - 300px);
+    border: solid;
+    border-width: 2px;
+    background-color: #F5F5F5;
+    padding-top: 35px;
+    text-align: center;
+    font-family: Arial;
+    font-size: 20px;
+    list-style-type: none;
+}

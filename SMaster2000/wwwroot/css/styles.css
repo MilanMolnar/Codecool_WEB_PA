@@ -1,4 +1,8 @@
-﻿#register_table {
+﻿body{
+    font-family: Arial
+}
+
+#register_table {
     display:none;
     position: absolute;
     width: 800px;
@@ -222,7 +226,7 @@
     padding-right: 3px;
     text-align: center;
     font-family: Arial;
-    width: 68px;
+    width: 75px;
     border: solid;
     border-width: 1px;
     border-radius: 4px;

@@ -84,6 +84,17 @@ namespace SMaster2000.Domain
             }
         }
 
+        public void CreateUserActivity(int userId, string activity)
+        {
+            using (var conn = new NpgsqlConnection(connectingString))
+            {
+                conn.Open();
+                var command = new NpgsqlCommand($"INSERT INTO userlog(user_id,user_activity) VALUES ('{userId}','{activity}')", conn);
+                command.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
+
         public List<ScheduleModel> GetScheduleForUser(string username)
         {
             List<ScheduleModel> userschedules = new List<ScheduleModel>();
@@ -145,8 +156,26 @@ namespace SMaster2000.Domain
 
         public List<UserActivityModel> GetAllUserActivity()
         {
-            // your code goes here Krisz
-            return null;
+            List<UserActivityModel> activityModels = new List<UserActivityModel>();
+            using (var conn = new NpgsqlConnection(connectingString))
+            {
+                conn.Open();
+                using (var command = new NpgsqlCommand($"SELECT * FROM users", conn))
+                {
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        UserActivityModel userActivity = new UserActivityModel();
+                        var user_id = Convert.ToInt32(reader["user_id"]);
+                        var user_activity = Convert.ToString(reader["user_activity"]);
+                        userActivity = new UserActivityModel(user_id, user_activity);
+                        activityModels.Add(userActivity);
+                    }
+                }
+                conn.Close();
+            }
+            return activityModels;
         }
 
 

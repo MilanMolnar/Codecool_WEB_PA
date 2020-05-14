@@ -33,6 +33,7 @@ namespace SMaster2000.Controllers
             var username = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Email).Value;
             int userId = _userService.GetUserByName(username);
             _userService.CreateSchedule(userId, scheduleNumOfDays, scheduleTitle);
+            _userService.CreateUserActivity(userId, "Created a schedule");
         }
 
         

@@ -29,13 +29,17 @@ namespace SMaster2000.Controllers
         public void Register([FromForm]string username, [FromForm]string password)
         {
             _userService.Register(username, password,"user");
-
+            int id =_userService.GetUserByName(username);
+            _userService.CreateUserActivity(id, "Just registered!");
         }
 
         [HttpGet]
         [Route("[action]")]
         public async void Logout()
         {
+            var username = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Email).Value;
+            int id = _userService.GetUserByName(username);
+            _userService.CreateUserActivity(id, "Just logged out!");
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
@@ -79,15 +83,21 @@ namespace SMaster2000.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
+
             
+
             if (_userService.Login(username, password))
             {
+                int id = _userService.GetUserByName(username);
+                _userService.CreateUserActivity(id, "Just logged in!");
+
                 if (_userService.IsAdmin(username))
                 {
                     // User admin
                     return "admin";
                 }
                 // User registered
+               
                 return username;
             }
             else

@@ -17,5 +17,7 @@ namespace SMaster2000.Domain
         public void CreateSchedule(int userId, string scheduleNumOfDays, string scheduleTitle);
 
         public List<ScheduleModel> GetAllSchedules();
+        public List<UserActivityModel> GetAllUserActivity();
+        public void CreateUserActivity(int userId, string activity);
     }
 }

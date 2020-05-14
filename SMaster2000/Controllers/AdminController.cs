@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SMaster2000.Domain;
@@ -23,9 +24,8 @@ namespace SMaster2000.Controllers
         [Route("[action]")]
         public List<UserActivityModel> ShowUserActivities()
         {
-            // checking if the user is logged in. If the user is not logged in, it will return 405 status code.
-
-            return null;  //Method: get all user activity.
+            var username = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Email).Value;
+            return _userService.GetAllUserActivity();
         }
 
     }

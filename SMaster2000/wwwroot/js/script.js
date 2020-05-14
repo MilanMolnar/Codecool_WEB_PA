@@ -269,7 +269,8 @@ function showMySchedules() {
 
                 let listOfSchedules = []; 
                 for (var i = 0; i < JSONOfSchedules.length; i++) {
-                    listOfSchedules.push(JSONOfSchedules[i].title)
+                    let scheduleItem = "ID: " + JSONOfSchedules[i].userID + ") " + JSONOfSchedules[i].title
+                    listOfSchedules.push(scheduleItem)
                 }
                 // The request has been completed successfully
                 document.getElementById("register_table").style.display = "none"
@@ -277,6 +278,7 @@ function showMySchedules() {
                 document.getElementById("login_table").style.display = "none"
                 document.getElementById("home_view").style.display = "none"
                 listRenderer(listOfSchedules);
+                console.log(xhr.responseText)
             /*DOM IDE*/
                 
 
@@ -309,7 +311,14 @@ function showAllSchedule() {
                 document.getElementById("profile_details").style.display = "none"
                 document.getElementById("login_table").style.display = "none"
                 document.getElementById("home_view").style.display = "none"
-                listRenderer(scheduleList);
+                let JSONOfSchedules = JSON.parse(xhr.responseText);
+
+                let listOfSchedules = [];
+                for (var i = 0; i < JSONOfSchedules.length; i++) {
+                    let scheduleItem = "ID: " + JSONOfSchedules[i].userID + ") " + JSONOfSchedules[i].title
+                    listOfSchedules.push(scheduleItem)
+                }
+                listRenderer(listOfSchedules);
             /*DOM IDE*/
                 console.log(xhr.responseText)
 
@@ -325,6 +334,20 @@ function showAllSchedule() {
     xhr.send()
 
 }
+function selectSchedule(element) {
+    var xhr = new XMLHttpRequest()
+    xhr.open('Post', '/Schedule/SelectSchedule')
+    var data = new FormData()
+    xhr.onreadystatechange = function () {
+        // In local files, status is 0 upon success in Mozilla Firefox
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            data.append('Title', element)
+            console.log(element)
+            //xhr.responseText DOM DISPLAY FROM THESE INFORMS-----------------------------------------------!!!
+        }
+    };
+    xhr.send(data)
+}
 
 function listRenderer(list) {
     let ul = document.createElement('ul');
@@ -335,7 +358,7 @@ function listRenderer(list) {
     function renderScheduleList(element, index, arr) {
         let li = document.createElement('li');
         li.setAttribute('id', 'shedule-item');
-
+        li.addEventListener("click", () => { selectSchedule(element) })
         ul.appendChild(li);
 
         li.innerHTML = li.innerHTML + element;

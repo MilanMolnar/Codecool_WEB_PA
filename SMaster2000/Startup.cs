@@ -11,9 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SMaster2000.Domain;
+using NewsMaster3000.Domain;
 
-namespace SMaster2000
+namespace NewsMaster3000
 {
     public class Startup
     {

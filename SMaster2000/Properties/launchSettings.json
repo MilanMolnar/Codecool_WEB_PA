@@ -14,7 +14,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "DB_USER": "postgres",
-        "DB_NAME": "ScheduleMaster2000",
+        "DB_NAME": "News",
         "DB_PASS": "admin",
         "DB_HOST": "localhost",
         "ASPNETCORE_ENVIRONMENT": "Development"

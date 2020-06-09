@@ -1,26 +1,344 @@
-﻿body{
-    font-family: Arial
+﻿body, html {
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: default;
+    background-color: dimgray !important
 }
 
-#register_table {
-    display:none;
-    position: absolute;
+#news-title {
+    background-color: gray;
     width: 800px;
-    height: 600px;
-    margin-top: 130px;
+    padding-left: 10px;
     margin-left: calc(50% - 400px);
+    margin-top: 30px;
+    list-style-type: none;
+    font-size: 18px;
+    cursor: pointer;
     border: solid;
-    border-width: 2px;
+    border-width: 1px;
+    border-bottom: none
 }
 
-#create_schedule_table {
-    position: absolute;
-    width: 800px;
-    height: 600px;
-    margin-top: 130px;
-    margin-left: calc(50% - 400px);
+
+#news-content {
     border: solid;
-    border-width: 2px;
+    border-width: 1px;
+    border-top: none;
+    background-color: dimgray;
+    width: 800px;
+    color: rgb(36, 36, 36);
+    border-collapse: collapse;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: -1px;
+    margin-left: calc(50% - 400px);
+    list-style-type: none;
+    word-break: break-all;
+    font-size: 14px;
+    cursor: default;
+    transition: background-color 1.6s;
+}
+    #news-content:hover {
+        background-color: gray
+    }
+
+#container {
+    position: fixed !important;
+    width: 100%;
+    top: 0px
+}
+
+#renderNewsList {
+    margin-top: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: dimgray;
+    display: none;
+    
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(230, 230, 230);
+    margin-right:10px
+    
+}
+
+#profile-button{
+}
+
+#news-date {
+    color: #383838;
+    float: right;
+    font-size: 12px;
+    margin-top: 6.5px;
+    margin-right: 10px
+}
+
+#accoun-bar{
+    float:right
+}
+
+
+
+#home-header{
+    text-align:center;
+    margin-top:70px
+}
+
+.grid-container {
+    margin: 7px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1.3fr 0.9fr 0.8fr;
+    gap: 3px 3px;
+    grid-template-areas: "one two two" "three four five" "six seven eight";
+    height: 660px;
+}
+
+.three {
+    border: solid;
+    border-width: 1px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 1.5fr;
+    gap: 1px 1px;
+    grid-template-areas: "threeTitle" "threeContent";
+    grid-area: three;
+    transition: background-color 0.7s;
+}
+
+.threeTitle {
+    cursor:pointer;
+    padding: 7px;
+    font-size: 18px;
+    background-color: gray;
+    grid-area: threeTitle;
+}
+
+.threeContent {
+    color: rgb(36, 36, 36);
+    padding: 7px;
+    word-break: break-all;
+    grid-area: threeContent;
+}
+
+.four {
+    border: solid;
+    border-width: 1px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 1.5fr;
+    gap: 1px 1px;
+    grid-template-areas: "fourTitle" "fourContent";
+    grid-area: four;
+    transition: background-color 0.7s;
+}
+
+.fourTitle {
+    cursor: pointer;
+    padding: 7px;
+    font-size: 18px;
+    background-color: gray;
+    grid-area: fourTitle;
+}
+
+.fourContent {
+    color: rgb(36, 36, 36);
+    padding: 7px;
+    word-break: break-all;
+    grid-area: fourContent;
+}
+
+.five {
+    border: solid;
+    border-width: 1px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 1.5fr;
+    gap: 1px 1px;
+    grid-template-areas: "fiveTitle" "fiveContent";
+    grid-area: five;
+    transition: background-color 0.7s;
+}
+
+.fiveTitle {
+    cursor: pointer;
+    padding: 7px;
+    font-size: 18px;
+    background-color: gray;
+    grid-area: fiveTitle;
+}
+
+.fiveContent {
+    color: rgb(36, 36, 36);
+    padding: 7px;
+    word-break: break-all;
+    grid-area: fiveContent;
+}
+
+.one {
+    border: solid;
+    border-width: 1px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.3fr 1.6fr;
+    gap: 1px 1px;
+    grid-template-areas: "oneTitle" "oneContent";
+    grid-area: one;
+    transition: background-color 0.7s;
+}
+
+.oneTitle {
+    cursor: pointer;
+    padding: 7px;
+    font-size: 18px;
+    background-color: gray;
+    font-size: 18px;
+    grid-area: oneTitle;
+}
+
+.oneContent {
+    color: rgb(36, 36, 36);
+    padding: 7px;
+    font-size: 14px;
+    word-break: break-all;
+    grid-area: oneContent;
+}
+
+.two {
+    border: solid;
+    border-width: 1px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.3fr 1.6fr;
+    gap: 1px 1px;
+    grid-template-areas: "twoTitle" "twoContent";
+    grid-area: two;
+    transition: background-color 0.7s;
+}
+
+.twoTitle {
+    cursor: pointer;
+    padding: 7px;
+    font-size: 18px;
+    background-color: gray;
+    grid-area: twoTitle;
+}
+
+
+.twoContent {
+    color: rgb(36, 36, 36);
+    padding: 7px;
+    word-break: break-all;
+    grid-area: twoContent;
+}
+
+.six {
+    border: solid;
+    border-width: 1px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 1.5fr;
+    gap: 1px 1px;
+    grid-template-areas: "sixTitle" "sixContent";
+    grid-area: six;
+    transition: background-color 0.7s;
+}
+
+.sixTitle {
+    cursor: pointer;
+    padding: 7px;
+    font-size: 18px;
+    background-color: gray;
+    grid-area: sixTitle;
+}
+
+.sixContent {
+    color: rgb(36, 36, 36);
+    padding: 7px;
+    word-break: break-all;
+    grid-area: sixContent;
+}
+
+.seven {
+    border: solid;
+    border-width: 1px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 1.5fr;
+    gap: 1px 1px;
+    grid-template-areas: "sevenTitle" "sevenContent";
+    grid-area: seven;
+    transition: background-color 0.7s;
+}
+
+.sevenTitle {
+    cursor: pointer;
+    padding: 7px;
+    font-size: 18px;
+    background-color: gray;
+    grid-area: sevenTitle;
+}
+
+.sevenContent {
+    color: rgb(36, 36, 36);
+    padding: 7px;
+    word-break: break-all;
+    grid-area: sevenContent;
+}
+
+.eight {
+    border: solid;
+    border-width: 1px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 1.5fr;
+    gap: 1px 1px;
+    grid-template-areas: "eightTitle" "eightContent";
+    grid-area: eight;
+    transition: background-color 0.7s;
+}
+
+.eightTitle {
+    cursor: pointer;
+    padding: 7px;
+    font-size: 18px;
+    background-color: gray;
+    grid-area: eightTitle;
+}
+
+.eightContent {
+    color: rgb(36, 36, 36);
+    padding: 7px;
+    word-break: break-all;
+    grid-area: eightContent;
+}
+}
+#grid-element{
+}
+.one:hover {
+    background-color: grey
+}
+.two:hover {
+    background-color: grey
+}
+.three:hover {
+    background-color: grey
+}
+.four:hover {
+    background-color: grey
+}
+.five:hover {
+    background-color: grey
+}
+.six:hover {
+    background-color: grey
+}
+.seven:hover {
+    background-color: grey
+}
+.eight:hover {
+    background-color: grey
 }
 
 #login_table {
@@ -33,48 +351,63 @@
     border: solid;
     border-width: 2px;
 }
-
-#profile_details {
+#one-article_table {
     display: none;
     position: absolute;
-    width: 800px;
-    height: 600px;
-    margin-top: 130px;
-    margin-left: calc(50% - 400px);
+    width: 1100px;
+    height: 700px;
+    margin-top: 85px;
+    margin-left: calc(50% - 500px);
     border: solid;
     border-width: 2px;
 }
 
+#profile-table {
+    display: none;
+    position: absolute;
+    width: 1100px;
+    height: 700px;
+    margin-top: 85px;
+    margin-left: calc(50% - 500px);
+    border: solid;
+    border-width: 2px;
+}
+
+#one-article-title{
+    margin-left: 40px;
+    margin-top: 50px;
+    font-family: Arial;
+    font-size: 50px;
+}
+
+#one-article-author {
+    font-size: 15px;
+    margin-left: 40px;
+    text-align: left
+}
+
+#one-article-date {
+    font-size: 14px;
+    margin-left: 40px;
+}
+#one-article-content {
+    font-size: 14px;
+    margin-left: 40px;
+    word-break: break-all;
+    width: 1030px;
+    height: 400px;
+    margin-left: calc(50% - (515px));
+    padding: 20px;
+    border-style: solid;
+    border-width: 2px;
+}
+
 #login-title {
+    margin-top: 100px;
     text-align: center;
     font-family: Arial;
-    font-size: 100px
-}
-
-#create-schedule-title {
-    text-align: center;
-    font-family: Arial;
-    font-size: 80px
-}
-
-#register-title {
-    text-align: center;
-    font-family: Arial;
-    font-size: 100px
-}
-
-#user-name-login {
-    float: left;
-    width: 200px;
-    height: 20px;
-    margin-left: calc(50% - 100px)
-}
-
-#user-name {
-    float: left;
-    width: 200px;
-    height: 20px;
-    margin-left: calc(50% - 100px)
+    font-size: 100px;
+    margin-bottom: 50px;
 }
 
 #user-pass-login {
@@ -85,65 +418,12 @@
     margin-left: calc(50% - 100px)
 }
 
-#user-pass {
-    float:left;
-    margin-top: 10px;
-    height: 20px;
+#user-name-login {
+    float: left;
     width: 200px;
+    height: 20px;
     margin-left: calc(50% - 100px)
 }
-
-
-#schedule-title-label {
-    font-family: Arial;
-    width: 300px;
-    margin-left: calc(50% - 150px)
-}
-
-#schedule-title {
-    font-family: Arial;
-    width: 300px;
-    margin-left: calc(50% - 150px)
-}
-
-#schedule-days-label {
-    font-family: Arial;
-    width: 300px;
-    margin-left: calc(50% - 150px)
-}
-
-#schedule-days {
-    font-family: Arial;
-    width: 300px;
-    margin-left: calc(50% - 150px)
-}
-
-#creation-schedule-button {
-    font-size: 18px;
-    padding-right: 3px;
-    text-align: center;
-    font-family: Arial;
-    width: 73px;
-    border: solid;
-    margin-left: calc(50% - 36px);
-    border-width: 1px;
-    border-radius: 4px;
-    border-color:darkgray;
-    margin-top:15px
-}
-
-#register-button {
-    width: 100px;
-    height: 30px;
-    margin-top: 26px;
-    margin-left: calc(50% - 50px);
-    border: solid;
-    border-width: 1px;
-    border-color: darkgray;
-    color: #383838;
-    border-radius: 4px
-}
-
 #login-user-button {
     width: 100px;
     height: 30px;
@@ -155,194 +435,153 @@
     color: #383838;
     border-radius: 4px
 }
-
-#required-password {
-    position: absolute;
-    top: 348px;
-    margin-left: calc(50% + 110px);
-    display: none;
-    color: red
-}
-
-#required-password-login {
-    position: absolute;
-    top: 348px;
-    margin-left: calc(50% + 110px);
-    display: none;
-    color: red
-}
-
-#required-username {
-    top: 320px;
-    position: absolute;
-    margin-left: calc(50% + 110px);
-    display:none;
-    color:red
-}
-
-#required-username-login {
-    top: 320px;
-    position: absolute;
-    margin-left: calc(50% + 110px);
-    display: none;
-    color: red
-}
-
-#navbar {
-    padding: 60px;
-    text-align: center;
-    border: solid;
-    border-width:2px;
-    font-size: 20px;
-}
-
-#registration-button {
-    top: 10px;
-    font-size: 18px;
-    padding-right: 3px;
-    font-family: Arial;
-    text-align: center;
-    width: 78px;
-    border: solid;
-    margin-left: 3px;
-    border-width: 1px;
-    border-radius: 4px;
-}
-
-#login-button {
-    font-size: 18px;
-    padding-right: 3px;
-    text-align: center;
-    font-family: Arial;
-    width: 62px;
-    border: solid;
-    margin-left:3px;
-    border-width: 1px;
-    border-radius: 4px;
-}
-
-#logout-button {
-    font-size: 18px;
-    padding-right: 3px;
-    text-align: center;
-    font-family: Arial;
-    width: 75px;
-    border: solid;
-    border-width: 1px;
-    border-radius: 4px;
-}
-
-#home-button {
-    font-size: 18px;
-    padding-right: 3px;
-    text-align: center;
-    font-family: Arial;
-    width: 68px;
-    border: solid;
-    border-width: 1px;
-    border-radius: 4px;
-}
-
-
-#schedule-button {
-    font-size: 18px;
-    padding-right: 3px;
-    text-align: center;
-    font-family: Arial;
-    width: 98px;
-    border: solid;
-    border-width: 1px;
-    border-radius: 4px;
-    margin-left:5px;
-}
-
-#my-schedule-button {
-    font-size: 18px;
-    padding-right: 3px;
-    text-align: center;
-    font-family: Arial;
-    width: 127px;
-    border: solid;
-    border-width: 1px;
-    border-radius: 4px;
-    margin-left: 5px;
-}
-
-#create-schedule-button {
-    font-size: 18px;
-    padding-right: 3px;
-    text-align: center;
-    font-family: Arial;
-    width: 127px;
-    border: solid;
-    border-width: 1px;
-    border-radius: 4px;
-    margin-left: 5px;
-}
-
-
-#adminlog-button {
-    font-size: 18px;
-    padding-right: 3px;
-    text-align: center;
-    font-family: Arial;
-    width: 150px;
-    border: solid;
-    border-width: 1px;
-    border-radius: 4px;
-    margin-left: 5px;
-    display:none;
-    
-}
-
-
-#home_view {
-}
-
-#home-title {
-    text-align: center;
-    font-size: 50px;
-    padding-left: 8px;
-    font-family: Arial;
-}
-
-#home-paragraph {
-    text-align: center;
-    font-size: 30px;
-    padding-left: 8px;
-    font-family: Arial;
-}
-
-button{
-    font-size:15px;
-    height: 30px;
-    border:0;
-    background-color:white;
-}
-
-#failed-login {
+#register_table {
     display: none;
     position: absolute;
-    top: 280px;
-    margin-left: calc(50% - 110px);
-    display: none;
-    color: red;
-    text-align: center;
-    width: 220px;
-}
-
-#shedule-item {
-    height: 60px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    width: 600px;
-    margin-left: calc(50% - 300px);
+    width: 800px;
+    height: 600px;
+    margin-top: 130px;
+    margin-left: calc(50% - 400px);
     border: solid;
     border-width: 2px;
-    background-color: #F5F5F5;
-    padding-top: 35px;
+}
+
+#register-title {
+    margin-top: 100px;
     text-align: center;
     font-family: Arial;
+    font-size: 100px;
+    margin-bottom: 50px;
+}
+
+#user-pass-register {
+    float: left;
+    margin-top: 10px;
+    height: 20px;
+    width: 200px;
+    margin-left: calc(50% - 100px)
+}
+#user-pass-confirm-register {
+    float: left;
+    margin-top: 10px;
+    height: 20px;
+    width: 200px;
+    margin-left: calc(50% - 100px)
+}
+
+
+#user-name-register {
+    float: left;
+    width: 200px;
+    height: 20px;
+    margin-left: calc(50% - 100px)
+}
+
+#register-user-button {
+    width: 100px;
+    height: 30px;
+    margin-top: 15px;
+    margin-left: calc(50% - 50px);
+    border: solid;
+    border-width: 1px;
+    border-color: darkgray;
+    color: #383838;
+    border-radius: 4px
+}
+
+#user-information{
+    margin-top: 15px;
+    color: white
+}
+
+#publish-button{
+    display: none
+}
+
+#article-content {
+    margin-top: 30px;
+    max-height: 300px;
+    min-height: 100px;
+    resize:vertical;
+    width: 900px;
+    margin-left: calc(50% - 450px)
+}
+#publish-user-button {
+    margin-top: 30px;
+    width: 200px;
+    margin-left: calc(50% - 100px)
+}
+#article-title {
+    width: 400px;
+    margin-left: calc(50% - 200px)
+}
+#article-author {
+    margin-top: 30px;
+    width: 400px;
+    margin-left: calc(50% - 200px)
+}
+
+#my-news-table {
+    margin-top:30px;
+    display: none;
+    width: 800px;
+    margin-left: calc(50% - 350px)
+}
+
+#authors-table {
+    margin-top: 30px;
+    display: none;
+    width: 800px;
+    margin-left: calc(50% - 350px)
+}
+
+#profile-user{
     font-size: 20px;
-    list-style-type: none;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 20px
+
+}
+
+
+#proflie-my-articles-btn {
+    height: 30px;
+    width: 100px;
+    margin-left: 20px
+}
+
+#proflie-authors-btn {
+    margin-left: 40px;
+    height: 30px;
+    width: 100px;
+}
+
+#my-news-select {
+    height: 30px;
+    width: 400px;
+}
+
+#author-select {
+    height: 30px;
+    width: 400px;
+}
+
+#delete-subscription {
+    height: 30px;
+    width: 150px;
+}
+
+#add-subscription {
+    height: 30px;
+    width: 150px;
+}
+
+#delete-my-news {
+    height: 30px;
+    width: 150px;
+}
+
+#edit-my-news{
+    height: 30px;
+    width: 150px;
 }

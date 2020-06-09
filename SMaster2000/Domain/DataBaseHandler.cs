@@ -1,18 +1,19 @@
 ﻿using Microsoft.Extensions.ObjectPool;
 using Npgsql;
-using SMaster2000.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
+using NewsMaster3000.Models;
+using NewsMaster3000.Domain;
 
-namespace SMaster2000.Domain
+namespace NewsMaster3000.Domain
 {
-    public class DataBaseHandler :IUserService
+    public class DataBaseHandler : IUserService
     {
-        public static readonly string connectingString = $"Host=localhost;Username=postgres;Password=admin;Database=ScheduleMaster2000";
+        public static readonly string connectingString = $"Host=localhost;Username=postgres;Password=admin;Database=NewsMaster3000";
 
         public bool Login(string username, string password)
         {
@@ -41,17 +42,55 @@ namespace SMaster2000.Domain
             return false;
         }
 
-        public void Register(string username, string password,string usertype)
+        public void Register(string username, string password, string usertype)
         {
-            
+
             using (var conn = new NpgsqlConnection(connectingString))
             {
                 conn.Open();
-                var command = new NpgsqlCommand($"INSERT INTO users(user_name,user_password,is_admin) VALUES ('{username}','{password}','{usertype}')",conn);
+                var command = new NpgsqlCommand($"INSERT INTO users(user_name,user_password,is_admin) VALUES ('{username}','{password}','{usertype}')", conn);
                 command.ExecuteNonQuery();
                 conn.Close();
             }
         }
+
+        public string SubscribeUser(string author, string subscriber)
+        {
+            int author_id = GetUserByName(author);
+            int subscribe_id = GetUserByName(subscriber);
+            try
+            {
+                using (var conn = new NpgsqlConnection(connectingString))
+                {
+                    conn.Open();
+                    var command = new NpgsqlCommand($"INSERT INTO subscribe(subscriber_id, author_id) VALUES ('{subscribe_id}','{author_id}')", conn);
+                    command.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                return "NoMoreSubscribe";
+            }
+            return "Subscribed";
+            
+
+        }
+
+        public void UnSubscribeUser(string author, string subscriber)
+        {
+            int author_id = GetUserByName(author);
+            int subscribe_id = GetUserByName(subscriber);
+            using (var conn = new NpgsqlConnection(connectingString))
+            {
+                conn.Open();
+                var command = new NpgsqlCommand($"DELETE FROM Subscribe WHERE subscriber_id = '{subscribe_id}' AND  author_id = '{author_id}'", conn);
+                command.ExecuteNonQuery();
+                conn.Close();
+            }
+
+        }
+
 
         public int GetUserByName(string userName)
         {
@@ -73,109 +112,15 @@ namespace SMaster2000.Domain
             return user_id;
         }
 
-        public void CreateSchedule(int userId,string scheduleNumOfDays, string scheduleTitle)
+        public void CreateNews(int userId, string newsTitle, string newsContent, string publishedDate, string author)
         {
             using (var conn = new NpgsqlConnection(connectingString))
             {
                 conn.Open();
-                var command = new NpgsqlCommand($"INSERT INTO schedule(user_id,schedule_title,number_of_days) VALUES ('{userId}','{scheduleTitle}','{scheduleNumOfDays}')", conn);
+                var command = new NpgsqlCommand($"INSERT INTO news(user_id,news_title,news_content,news_author,news_published_date) VALUES ('{userId}','{newsTitle}','{newsContent}','{author}', '{publishedDate}')", conn);
                 command.ExecuteNonQuery();
                 conn.Close();
             }
-        }
-
-        public void CreateUserActivity(int userId, string activity)
-        {
-            using (var conn = new NpgsqlConnection(connectingString))
-            {
-                conn.Open();
-                var command = new NpgsqlCommand($"INSERT INTO userlog(user_id,user_activity) VALUES ('{userId}','{activity}')", conn);
-                command.ExecuteNonQuery();
-                conn.Close();
-            }
-        }
-
-        public List<ScheduleModel> GetScheduleForUser(string username)
-        {
-            List<ScheduleModel> userschedules = new List<ScheduleModel>();
-
-            int userid = GetUserByName(username);
-
-            using (var conn = new NpgsqlConnection(connectingString))
-            {
-                conn.Open();
-                using (var command = new NpgsqlCommand($"SELECT * FROM schedule WHERE user_id = {userid}", conn))
-                {
-                    var reader = command.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        ScheduleModel scheduleModel = new ScheduleModel();
-                        var schedule_id = Convert.ToInt32(reader["schedule_id"]);
-                        var user_id = Convert.ToInt32(reader["user_id"]);
-                        var schedule_title = Convert.ToString(reader["schedule_title"]);
-                        var number_of_days = Convert.ToInt32(reader["number_of_days"]);
-
-                        scheduleModel = new ScheduleModel(user_id, schedule_title, number_of_days);
-                        userschedules.Add(scheduleModel);
-                    }
-                }
-                conn.Close();
-            }
-            return userschedules;
-        }
-
-        public List<ScheduleModel> GetAllSchedules()
-        {
-            List<ScheduleModel> userschedules = new List<ScheduleModel>();
-
-            using (var conn = new NpgsqlConnection(connectingString))
-            {
-                conn.Open();
-                using (var command = new NpgsqlCommand($"SELECT * FROM schedule", conn))
-                {
-                    var reader = command.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        ScheduleModel scheduleModel = new ScheduleModel();
-                        var schedule_id = Convert.ToInt32(reader["schedule_id"]);
-                        var user_id = Convert.ToInt32(reader["user_id"]);
-                        var schedule_title = Convert.ToString(reader["schedule_title"]);
-                        var number_of_days = Convert.ToInt32(reader["number_of_days"]);
-
-                        scheduleModel = new ScheduleModel(user_id, schedule_title, number_of_days);
-                        userschedules.Add(scheduleModel);
-                    }
-                }
-                conn.Close();
-            }
-            return userschedules;
-        }
-
-
-        public List<UserActivityModel> GetAllUserActivity()
-        {
-            List<UserActivityModel> activityModels = new List<UserActivityModel>();
-            using (var conn = new NpgsqlConnection(connectingString))
-            {
-                conn.Open();
-                using (var command = new NpgsqlCommand($"SELECT * FROM userlog", conn))
-                {
-                    var reader = command.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        UserActivityModel userActivity = new UserActivityModel();
-                        var user_id = Convert.ToInt32(reader["user_id"]);
-                        var user_activity = Convert.ToString(reader["user_activity"]);
-                        userActivity = new UserActivityModel(user_id, user_activity);
-                        activityModels.Add(userActivity);
-                    }
-                }
-                conn.Close();
-            }
-            return activityModels;
         }
 
 
@@ -190,8 +135,8 @@ namespace SMaster2000.Domain
                     var reader = command.ExecuteReader();
 
                     while (reader.Read())
-                    {   
-                        is_admin = Convert.ToString(reader["is_admin"]);                 
+                    {
+                        is_admin = Convert.ToString(reader["is_admin"]);
                     }
                 }
                 conn.Close();
@@ -202,7 +147,56 @@ namespace SMaster2000.Domain
                 return true;
             }
             return false;
-
         }
+
+        public List<string> GetAllAuthors()
+        {
+            List<string> authors = new List<string>();
+            using (var conn = new NpgsqlConnection(connectingString))
+            {
+                conn.Open();
+                using (var command = new NpgsqlCommand($"SELECT user_name FROM users WHERE is_admin = 'admin'", conn))
+                {
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        authors.Add(Convert.ToString(reader["user_name"]));
+                    }
+                }
+                conn.Close();
+            }
+            return authors;
+        }
+        public List<NewsModel> GetAllNews()
+        {
+            List<NewsModel> usernews = new List<NewsModel>();
+
+            using (var conn = new NpgsqlConnection(connectingString))
+            {
+                conn.Open();
+                using (var command = new NpgsqlCommand($"SELECT * FROM news", conn))
+                {
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        NewsModel newsModel = new NewsModel();
+                        var news_id = Convert.ToInt32(reader["news_id"]);
+                        var user_id = Convert.ToInt32(reader["user_id"]);
+                        var news_title = Convert.ToString(reader["news_title"]);
+                        var news_content = Convert.ToString(reader["news_content"]);
+                        var news_author = Convert.ToString(reader["news_author"]);
+                        var news_published_date = Convert.ToString(reader["news_published_date"]);
+
+                        newsModel = new NewsModel(user_id, news_id, news_title, news_content, news_author, news_published_date);
+                        usernews.Add(newsModel);
+                    }
+                }
+                conn.Close();
+            }
+            return usernews;
+        }
+
     }
 }
